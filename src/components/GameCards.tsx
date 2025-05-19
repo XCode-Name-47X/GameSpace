@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../App.css";
 
+const apiKey = import.meta.env.VITE_RAWG_API_KEY;
+
+
 interface Game {
   id: number;
   name: string;
@@ -28,7 +31,7 @@ function GameCards({ addGameToCategory }: GameCardsProps) {
       const randomPage = Math.floor(Math.random() * 100) + 1;
       const response = await axios.get("https://api.rawg.io/api/games", {
         params: {
-          key: "625cc23f2b7d4436ba5e5a6d705bf156",
+          key: apiKey,
           page_size: 20,
           page: randomPage,
         },
@@ -48,7 +51,7 @@ function GameCards({ addGameToCategory }: GameCardsProps) {
       setIsSearching(true);
       const response = await axios.get("https://api.rawg.io/api/games", {
         params: {
-          key: "625cc23f2b7d4436ba5e5a6d705bf156",
+          key: apiKey,
           search: searchTerm,
           page_size: 40,
         },
